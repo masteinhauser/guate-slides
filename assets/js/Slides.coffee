@@ -23,7 +23,7 @@ SlideRouter = Backbone.Router.extend
          if action
             e.preventDefault()
             e.stopPropagation()
-            action.call(@)
+#            action.call(@)
       @_bindSocket()
 
    _bindSocket: ->
