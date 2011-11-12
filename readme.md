@@ -13,6 +13,7 @@ coffee app.coffee
 ## Credits
 
 Built around an idea from [@EsaMatti](http://twitter.com/EsaMatti)'s project [geekslides](https://github.com/epeli/geekslides).
+Implemented by [@wavded](http://twitter.com/wavded) with updates.
 
 ## License
 
