@@ -1,11 +1,11 @@
 !=css('slides')
 !=js('Slides')
 
-#connect Establishing Connection with Server
+#Connect Connecting to Server...
 
 #slides
   .slide
-    h1 Welcome to Zabbix & Dev Ops
+    h1 Welcome to Zabbix
     .center
       img.framed(src='/img/zabbix.png')
       p
@@ -24,18 +24,23 @@
     .speaker
       ul
         li Hi and welcome
+        li About me
         li Plug for ADC
 
   .slide
     h1 Zabbix & Dev Ops in a nutshell
+    p Monitoring: Systems & Networks
     ul
-      li Monitoring: Systems & Networks
-      li Dev Ops: Configuring servers as a program
+      li What's your network doing right now?
+      li What's the average process load of your database servers at peak?
+      li Do all of your systems have sufficient free space?
+      li How many requests per second are you seeing(near real-time)
+      li How many tuples per second does your DB process?
 
     .speaker
       ul
-        li Who's heard of Zabbix or Dev Ops?
-        li Who's used it for anything?
+        li Who's heard of Zabbix or uses monitoring?
+        li Who's used it or other monitoring for anything?
 
   .slide
     h1 Server monitoring
@@ -43,7 +48,7 @@
     
     p Roll-Your-Own
     ul
-      li Emails
+      li Scheduled Emails
       li Scripts
 
     p Integrated
@@ -52,257 +57,304 @@
       li Nagios
       li Cacti
       li Zabbix
+      li Many others...
 
     .speaker
       ul
         li Simple Scripts / Emails
         li Updates / Graphs
         li Info in flat-files or DB
+        li Alerting
+
+  .slide
+    h1 Zabbix Architecture
+
+    p Zabbix environment consists of:
+    ul
+      li Zabbix Servers
+      li Database to store info (MySQL, PostgreSQL, Oracle, DB2)
+      li Frontend (php)
+      li Proxies (large/distributed environments)
+      li Agents
+      li External Scripts
+
+    .speaker
+      ul
+       li server
+       li DB agnostic
+       li PHP frontend
+       li proxies, why?
+       li agents, getting data
+       li scripts and zabbix_sender
+
+  .slide
+    h1 Zabbix Architecture
+    .center
+      img.framed(src="/img/zabbix_arch.png")
+
+    .speaker
+      ul
+        li Flow of items
+        li Triggers
+        li Actions
+  
+  .slide
+    h1 Zabbix Architecture
+    p A bit like LEGO
+    ul
+      li Zabbix has Templates
+      li Templates have hosts (Many <-> Many)
+      li Templates have Items so Hosts have Items
+      li Items have Triggers
+      li Triggers fire off Actions
+      li Actions turn humans or scripts into action.
+
+    .speaker
+      ul
+        li Template --> Object
+        li Hosts --> Instance
+        li Items --> Attributes
+        li Triggers --> Methods with tests
+        li Actions --> Message calls
+
+  .slide
+    h1 Zabbix Architecture
+    h3 Items
+    ul
+      li Identified by a 'Key'
+      li Numeric or text
+      li Have timer attributes
+      li Can be grouped in Applications
+    
+    .speaker
+      ul
+        li Application bug, only 1 app per host per template.
+
+  .slide
+    h1 Zabbix Architecture
+    h3 Triggers
+    ul
+      li Use logic to interpret item values
+      li Check against min, max, avg, last value.
+      li RegEx and string matching
+      li Date, times, intervals
+      li Can be complex but extremely powerful(like Zabbix)
+      li Outcome is always numerical
+
+    .speaker
+      p Show example on VPN'd live
+
+  .slide
+    h1 Zabbix Architecture
+    h3 Events
+    ul
+      li Trigger state changed 
+      li Logged for future reference and Audit
+      li Can be ACKed for further tracking
+
+  .slide
+    h1 Zabbix Architecture
+    h3 Actions
+    ul
+      li Work on basis of conditions
+      li Send out notifications
+      ul
+        li Can send on intervals if problem still exits
+        li Can send waiting for ACK
+      li Run scripts on hosts or feed info to other system
+    p This is the basis of alerting
+
+    .speaker
+      ul
+        li What conditions?
+        li Repeats?
+        li Acknowledge?
+        li Scripts?
+
+  .slide
+    h1 Getting Alerts
+    ul
+      li iPhone
+        ul
+          li Prowl for instant Push
+          li Mozaby
+          li ZBX Mobile
+      li Android
+        ul
+          li ZAX Zabbix Systems Monitoring
+          li Many many others
+      li Email
+      li SMS
+      li Jabber
+      li Airraid Sirens (external scripts)
+
+    .speaker
+      ul
+        li Email
+        li iPhone: Prowl
+        li Android: ZAX
+        li Airraid
+
+  .slide
+    h1 Types of Systems to Monitor
+
+    p Hardware
+    ul
+      li Servers
+      li Routers / Switches
+      li Environment Controls
+      ul
+        li Server Room Temperature
+        li Bathroom doors
+      li Other
+      ul
+        li 
+          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=649&period=432000") Issues resolved per Day
+        li 
+          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=647&period=432000") Bugs
+        li
+          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=623&perion=432000") Users in #zabbix
+
+    p Software
+    ul 
+      li Application Servers
+      li Database
+      li Monitoring Systems
+      li Custom metrics
+    
+    .speaker
+      ul
+        li servers
+        li bathroom
+        li commits
+        li bugs
 
   .slide 
-    h1 title
-    .center title
+    h1 Monitoring Hardware
+    ul
+      li 
+        a(href="http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol") SNMP
+        ul
+          li On all *nix systems
+          li Easy to config
+          li Not very extendable
+      li 
+        a(href="http://en.wikipedia.org/wiki/Zabbix") Zabbix Agent
+        ul
+          li Very Extendable
+          li Active / Passive checks
+          ul
+            li Linux
+            li Windows
+            li MacOS
+            li AIX, HP-UX, Solaris
 
-  .slide 
-    h1 Blocking I/O (Sync)
-    pre
-      | <?php
-      |   echo "Hello";
-      |   file_get_contents("/path/to/file");
-      |   echo "World";
-      | ?>
+    p Well tested custom SNMP scripts on my 
+      a(href="htp://github.com/masteinhauser/zabbix") GitHub
+      |  for Zabbix 2.0 (In beta @ v1.9.7)
 
     .speaker
       ul
-        li I/O blocks execution
-        li What is the server doing while its waiting? Typicall nothing.
+        li SNMP ease
+        li ZA config and custom metrics
+        li SNMP scripts
 
   .slide
-    h1 I/O is not free
+    h1 Monitoring Hardware
+    p Other methods
     ul
-      li L1: 3 cycles
-      li L2: 14 cycles
-      li RAM: 250 cycles
-    hr
+      li IPMI
+      li Simple Checks(ping, tcp connections, etc)
+      li Web (Actively look at and verify webpage content)
+      li External Scripts (We use for FTP server verification)
+      li Zabbix Trapper scripts (Apache, database, custom daemons)
+      li Telnet/SSH
+      li Many "plugins"
+
+  .slide
+    h1 Monitoring Software
+
+    p Application Servers
     ul
-      li: b DISK: 41,000,000 cycles
-      li: b NETWORK: 240,000,000 cycles
-    p: small
-      a(href='http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait')
-        | http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait
+      li Java/Tomcat through JMX
+      li Apache/nginx through python
+      li Anything with zabbix_sender or frontend API calls
+
+    p Database with 
+      a(href="http://www.smartmarmot.com/product/dbforbix/") DBforBix
+    ul
+      li Oracle
+      li MySQL
+      li PostgreSQL
+      li DB2
+      li MS SQL Server
+    .speaker
+      ul
+        li app server monitor
+        li db server monitor
+
+  .slide
+    h1 Data Visualization
+    ul
+      li Graphs
+      li Maps
+      li Screens / Slides
+      li Reports
 
     .speaker
       ul
-        li L1, L2, RAM considered non-blocking
-        li Disk, Network is blocking
+        li graphs
+        li maps
+        li screens
+        li reports/SLAs
 
   .slide
-    h1 NGINX vs. Apache
-    .center
-      // p requests per second
-      img(src="/img/reqs.png")
-      p: small
-        a(href="http://blog.webfaction.com/a-little-holiday-present") http://blog.webfaction.com/a-little-holiday-present
+    h1 Advanced Features
+    ul
+      li Web Monitoring
+      li Auto Discovery and Registration
+      li Maintenance Periods
+      li XML Import / Export
+      li JSON API
+      li 
+        a(href="http://www.zabbix.com/documentation/1.8/manual/processes/zabbix_sender") Zabbix Sender
+      li 
+        a(href="http://www.zabbix.com/wiki/doc/tech/proto/zabbixsenderprotocol") Zabbix Sender Protocol
+    p New in 2.0
+    ul
+      li Low Level Discovery
 
     .speaker
       ul
-        li How a server handles I/O (blocking and non-blocking) matters
-
-  .slide
-    h1 NGINX vs. Apache
-    .center
-      // p memory usage
-      img(src="/img/memory.png")
-      p: small
-        a(href="http://blog.webfaction.com/a-little-holiday-present") http://blog.webfaction.com/a-little-holiday-present
-
-    .speaker
-      ul
-        li How a server handles I/O (blocking and non-blocking) matters
-
-  .slide
-    h1 NGINX vs. Apache
-    ul
-      li Apache uses one thread per connection
-      li NGINX doesn't use multiple threads but instead uses an event loop
-
-  .slide
-    h1 Threads
-    p Threads aren't free, each execution stack takes memory.
-    p Threads introduce additional complexity
-    ul
-      li Race conditions
-      li Additional setup overhead
-      li Deadlock
-      li System/Application confusion
-
-  .slide
-    h1 The Event Loop
-    ul
-      li Efficient (if used asynchronously)
-      li Only one stack
-      li No memory overhead
-      li Simpler model, no deadlocks or race conditions
-
-  .slide
-    h1 Non-blocking I/O (Async)
-    pre
-      | console.log('Hello');
-      | fs.readFile('/path/to/file', function(err, data) {
-      |   // ...
-      | });
-      | console.log("World");
+        li Explain low-level SNMP
+        li Explain Zabbix Sender
+        li Explain Java sender
 
   .slide
     h1 Demo Time
-    p.center C++/NodeJS on I/O
-
-  .slide
-    h1 An Illustration
-    .center
-      img(src='/img/waiting-room.gif')
-      p: small
-        a(href="http://groups.google.com/group/nodejs/browse_thread/thread/487852eb1db88492")
-          | http://groups.google.com/group/nodejs/browse_thread/thread/487852eb1db88492
-
-  .slide
-    h1 Why JavaScript?
-    ul
-      li JS devs already think asynchronously (AJAX)
-      li JS is fast and 
-        a(href="http://arewefastyet.com") getting faster
-      li JS quickly becoming a 
-        a(href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS") compilation target
-      li No existing synchronous libs
-      li Since node.js uses one JS VM, you don't have to code for different engines, just one
-      li EcmaScript 5 and Harmony Features when available
-      li Code sharing between the client and server
-      li JSON native ( &lt;3 nosql dbs, e.g. <a href="//couchdb.apache.org">CouchDB</a>, <a href="//mongodb.org">MongoDB</a> )
+    p Demo
+    ul 
+      li Let's take down a server!
+      |  Watch and listen for the notifications. 
+      li Explore the Zabbix interface
 
     .speaker
       ul
-        li Existing sync libs, e.g. Python core does not work in Twisted
-        li No need to wait for all browsers to catch up
+        li VPN in and down wwt-web8
 
   .slide
-    h1 More Demos
+    h1 More Info
+    ul
+      li
+          a(href="http://blog.zabbix.com/") Official Blog
+      li
+          a(href="http://www.zabbix.com/training_testimonials.php") Testimonials
+      li
+        a(href="http://amzn.com/dp/184719768X") Zabbix 1.8 Network Monitoring Book
+
 
   .slide
-    h1 What are people creating?
-    ul
-      li
-        a(href="https://github.com/LearnBoost/node-canvas") node-canvas
-        | 
-        small Server-side HTML5 Canvas
-      li
-        a(href="https://github.com/tmpvar/jsdom") jsdom
-        | 
-        small Server-side DOM
-        ul
-          li
-            a(href="http://express.davglass.com/") yui3
-            | 
-            small Rendering JS UI lib components server-side
-          li
-            a(href="http://zombie.labnotes.org/") zombie
-            | 
-            small Headless browser testing
-      li
-        a(href="http://minimason.no.de/") node-webgl
-        | 
-        small Server-side WebGL
-      li
-        a(href="http://expressjs.com") express
-        | 
-        small Web framework, fast and simple
-      li
-        a(href="http://vowsjs.org") vows
-        | 
-        small Asyncronous BDD testing framework
-      li
-        a(href="http://learnboost.github.com/stylus/") stylus
-        | 
-        small Expressive, dynamic, robust CSS templating
-      li
-        a(href="http://jade-lang.com") jade
-        | 
-        small HTML templating engine
-      li
-        a(href="http://socket.io") socket.io
-        | 
-        small WebSockets for everyone
-        ul
-          li
-            a(href="https://github.com/socketstream/socketstream") socketstream
-            | 
-            small Real-time web framework
-      li
-        a(href="http://hummingbirdstats.com/") hummingbird
-        | 
-        small Real-time traffic monitoring
-      li
-        a(href="https://github.com/hookio/hook.io") hook.io
-        | 
-        small Massively distributed event-emitter
-      li
-        a(href="https://github.com/dannycoates/node-inspector") node-inspector
-        | 
-        small Webkit-like debugging console
-      li
-        a(href="https://github.com/felixge/node-mysql") mysql
-        | 
-        small MySQL db client
-      li
-        a(href="https://github.com/brianc/node-postgres") pg
-        | 
-        small Fast JS and Native PostgreSQL client
-      li
-        a(href="http://mongoosejs.com/") mongoose
-        | 
-        small Feature-rich MongoDB ODM
-      li
-        a(href='http://nodeknockout.com/') Node Knockout
-
-  .slide
-    h1 issues with node.js
-    ul
-      li Still relatively young
-      li Raw computation
-      ul
-        li Bad idea to do it on the main thread
-        li: a(href='https://github.com/pgriess/node-webworker') node-webworker
-      li Callbacks!
-        ul
-          li: a(href="https://github.com/creationix/step") Step
-          li: a(href="https://github.com/caolan/async") Async.js
-          li: a(href="https://github.com/substack/node-seq") Seq
-      li Error handling
-        ul
-          li Always killing stack on each turn around the event loop
-          li Same problem we have in the web browser
-
-  .slide 
-    h1 Getting Setup
-    ul
-      li
-        a(href="https://github.com/joyent/node/wiki/Installation") Node Setup Instructions
-      li 
-        a(href="http://npmjs.org") NPM
-        | 
-        small Node Package Manager
-    p Other Helpers
-    ul
-      li 
-        a(href="https://github.com/isaacs/node-supervisor") supervisor
-        | 
-        small Code watcher and reloader
-      li
-        a(href="https://github.com/indexzero/forever") forever
-        | 
-        small Daemonizer, respawner
-
-  .slide
-    h1 Thanks!
+    h1 Questions + Discussion
     p Technologies used in this presentation:
     ul
       li Server Side
@@ -326,6 +378,7 @@
             a(href="http://documentcloud.github.com/backbone") jQuery
           li
             a(href="http://documentcloud.github.com/backbone") Backbone
+    p Thanks for coming!
 
 img.logo(src='/img/adc.png')
 #keyboard-enable
