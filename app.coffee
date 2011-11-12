@@ -9,10 +9,10 @@ app.use assets()
 app.use express.static(__dirname + '/assets')
 
 app.get '/', (req,res) -> res.render('slides.jade', { ip: ip })
-app.get '/clicker', (req,res) -> res.render('clicker.jade')
+app.get '/remote', (req,res) -> res.render('clicker.jade')
 
 slides_io = io.of("/slides")
-clicker_io = io.of("/clicker")
+clicker_io = io.of("/remote")
 
 slideId = 1 # dangerous for a threaded system to do
 clicker_io.on "connection", (socket) ->
