@@ -26,8 +26,12 @@ SlideRouter = Backbone.Router.extend
          if action
             e.preventDefault()
             e.stopPropagation()
+<<<<<<< HEAD
+#            action.call(@)
+=======
             if @keyboardEnabled then action.call(@)
       $("#keyboard-enable").click (e) => alert('Enabled Keyboard'); @keyboardEnabled = true
+>>>>>>> 1042bf1394acd95dd674149d2fd9ddda2e76f794
       @_bindSocket()
 
    _bindSocket: ->
