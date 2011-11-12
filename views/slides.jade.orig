@@ -134,6 +134,7 @@
     h1 Zabbix Architecture
     h3 Triggers
     ul
+<<<<<<< HEAD
       li Use logic to interpret item values
       li Check against min, max, avg, last value.
       li RegEx and string matching
@@ -143,6 +144,12 @@
 
     .speaker
       p Show example on VPN'd live
+=======
+      li Race conditions
+      li Deadlock
+      li Additional setup overhead
+      li System/Application confusion
+>>>>>>> b7198ddad0ecac629b0648f30b6bfad02219f695
 
   .slide
     h1 Zabbix Architecture
@@ -276,6 +283,7 @@
 
     p Application Servers
     ul
+<<<<<<< HEAD
       li Java/Tomcat through JMX
       li Apache/nginx through python
       li Anything with zabbix_sender or frontend API calls
@@ -292,6 +300,117 @@
       ul
         li app server monitor
         li db server monitor
+=======
+      li
+        a(href="https://github.com/LearnBoost/node-canvas") node-canvas
+        | 
+        small Server-side HTML5 Canvas
+      li
+        a(href="https://github.com/tmpvar/jsdom") jsdom
+        | 
+        small Server-side DOM
+        ul
+          li
+            a(href="http://express.davglass.com/") yui3
+            | 
+            small Rendering JS UI lib components server-side
+          li
+            a(href="http://zombie.labnotes.org/") zombie
+            | 
+            small Headless browser testing
+      li
+        a(href="http://minimason.no.de/") node-webgl
+        | 
+        small Server-side WebGL
+      li
+        a(href="http://expressjs.com") express
+        | 
+        small Web framework, fast and simple
+      li
+        a(href="http://vowsjs.org") vows
+        | 
+        small Asyncronous BDD testing framework
+      li
+        a(href="http://learnboost.github.com/stylus/") stylus
+        | 
+        small Expressive, dynamic, robust CSS templating
+      li
+        a(href="http://jade-lang.com") jade
+        | 
+        small HTML templating engine
+      li
+        a(href="http://socket.io") socket.io
+        | 
+        small WebSockets for everyone
+        ul
+          li
+            a(href="https://github.com/socketstream/socketstream") socketstream
+            | 
+            small Real-time web framework
+      li
+        a(href="https://github.com/substack/dnode") dnode
+        | 
+        small Async RPC System (ports for Perl, Ruby, PHP, JAVA)
+
+  .slide
+    h1 What are even more people creating?
+    ul
+      li
+        a(href="http://hummingbirdstats.com/") hummingbird
+        | 
+        small Real-time traffic monitoring
+      li
+        a(href="https://github.com/hookio/hook.io") hook.io
+        | 
+        small Massively distributed event-emitter
+      li
+        a(href="https://github.com/dannycoates/node-inspector") node-inspector
+        | 
+        small Webkit-like debugging console
+      li
+        a(href="https://github.com/felixge/node-mysql") mysql
+        | 
+        small MySQL db client
+      li
+        a(href="https://github.com/brianc/node-postgres") pg
+        | 
+        small Fast JS and Native PostgreSQL client
+      li
+        a(href="http://mongoosejs.com/") mongoose
+        | 
+        small Feature-rich MongoDB ODM
+      li
+        a(href='http://nodeknockout.com/') Node Knockout
+        | 
+        small Coding competition
+      li And 
+        a(href='http://search.npmjs.org/') many
+        | 
+        a(href='https://github.com/joyent/node/wiki/modules') more
+        | !
+  .slide
+    h1 Where is it used?
+    p Use Cases
+    ul
+      li
+        a(href="http://voxer.com/") Voxer
+        | 
+        small VOIP Service
+      li
+        a(href="http://transload.it/") TransloadIt
+        | 
+        small File uploading, conversion service
+      li
+        a(href="http://applieddataconsultants") Applied Data Consultants
+        | 
+        small Production web applications, internal scripts
+    p More Resources
+    ul
+      li
+        a(href="http://www.quora.com/Node-js/What-companies-are-using-Node-js-in-production") More Production Use Cases
+      li
+        a(href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node") Companies, Projects Using Node
+>>>>>>> b7198ddad0ecac629b0648f30b6bfad02219f695
 
   .slide
     h1 Data Visualization
@@ -303,10 +422,24 @@
 
     .speaker
       ul
+<<<<<<< HEAD
         li graphs
         li maps
         li screens
         li reports/SLAs
+=======
+        li Bad idea to do it in an event loop
+        li: a(href='https://github.com/pgriess/node-webworker') node-webworker
+      li Callbacks!
+        ul
+          li: a(href="https://github.com/creationix/step") Step
+          li: a(href="https://github.com/caolan/async") Async.js
+          li: a(href="https://github.com/substack/node-seq") Seq
+      li Error handling
+        ul
+          li Always killing stack on each turn around the event loop
+          li Same problem we have in the web browser
+>>>>>>> b7198ddad0ecac629b0648f30b6bfad02219f695
 
   .slide
     h1 Advanced Features
@@ -354,7 +487,11 @@
 
 
   .slide
+<<<<<<< HEAD
     h1 Questions + Discussion
+=======
+    h1 Thanks and Questions?
+>>>>>>> b7198ddad0ecac629b0648f30b6bfad02219f695
     p Technologies used in this presentation:
     ul
       li Server Side
@@ -384,11 +521,20 @@ img.logo(src='/img/adc.png')
 #keyboard-enable
 
 #footer
+<<<<<<< HEAD
   a(href="http://github.com/masteinhauser/zabbix-slides", target='_blank')
     | http://github.com/masteinhauser/zabbix-slides
   .upper
     | Myles Steinhauser 
     a(href="http://twitter.com/masteinhauser") @masteinhauser
-    | &nbsp;
-    |
-    a=ip
+
+=======
+  a(href="http://github.com/applieddataconsultants/node-slides", target='_blank')
+    | http://github.com/applieddataconsultants/node-slides
+  | &nbsp; &nbsp;
+  .upper
+    | Marc Harter 
+    a(href="http://twitter.com/wavded") @wavded
+    | 
+    a= ip
+>>>>>>> b7198ddad0ecac629b0648f30b6bfad02219f695
