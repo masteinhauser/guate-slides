@@ -62,5 +62,5 @@ $ ->
    $.get "/", (data) ->
       slides = $(".slide", data)
       new Clicker
-         socket: connection.socket.of("/clicker")
+         socket: connection.socket.of("/remote")
          slides: slides
