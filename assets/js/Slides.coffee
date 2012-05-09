@@ -27,7 +27,8 @@ SlideRouter = Backbone.Router.extend
       "32": -> @navigate "/slide/#{ if @slideId < @slides.size() then @slideId + 1 else @slides.size() }", true
 
    allowEmit: true
-   keyboardEnabled: false
+   #   keyboardEnabled: false
+   keyboardEnabled: true
 
    initialize: (options = {}) ->
       { @slides, @socket } = options
@@ -58,7 +59,7 @@ SlideRouter = Backbone.Router.extend
       @slides.removeClass("active")
       slide = @slides.get(id - 1)
       $(slide).addClass("active")
-      document.title = $(".active h1").text()
+      document.title = $(".active h1").text() || $(".active h2").text()
 
 $ ->
    connection = io.connect()

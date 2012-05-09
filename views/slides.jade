@@ -5,17 +5,12 @@
 
 #slides
   .slide
-    h1 Welcome to Zabbix
     .center
-      img.framed(src='/img/zabbix.png')
+      h2 Guatemalan Elections: <br/> How Perception and Emotive Communication Influence
+      img.framed(src='/img/map_of_guatemala.jpg')
       p
         b Who: 
         a(href="http://masteinhauser.github.com") Myles Steinhauser
-        br
-        b Twitter: 
-        a(href="http://twitter.com/masteinhauser") @masteinhauser
-        br
-        br
 
       p Visit 
         b http://#{ip}:#{app.address().port}/ 
@@ -23,336 +18,49 @@
 
     .speaker
       ul
-        li Hi and welcome
-        li About me
-        li Plug for ADC
+        li About Guatemala
+        li Credibility: Volunteered there, family history
 
   .slide
-    h1 Zabbix & Dev Ops in a nutshell
-    p Monitoring: Systems & Networks
+    h2 Guatemala: Facts
     ul
-      li What's your network doing right now?
-      li What's the average process load of your database servers at peak?
-      li Do all of your systems have sufficient free space?
-      li How many requests per second are you seeing(near real-time)
-      li How many tuples per second does your DB process?
+      li One of the highest violent crime rates in Latin America
+      | Average of 109 reported murders per week, 14.4 million people<br>
+      | U.S. is 284 per week, 312 million people<br>
+      <br>
+      li One of the least educated countries in the world and the lowest in Central America<br>
+        a(href="http://en.wikipedia.org/wiki/Guatemala#Education") Literacy Rate
+        | &nbsp;74.5% of 15 and older
+      <br>
+      li One of the poorest countries in the world<br>
+        a(href="http://en.wikipedia.org/wiki/Guatemala#Education") CIA World Fact Book<br>
+        | Poverty: 56.2%<br>
+        | Extreme Poverty: 13%
+      <br>
+      li Proverty can be broken down further:
+      | Indigenous people are 38% of population<br>
+      | Poverty: 73%<br>
+      | Extreme Poverty: 28%<br>
 
     .speaker
       ul
-        li Who's heard of Zabbix or uses monitoring?
-        li Who's used it or other monitoring for anything?
+        li Poverty = $2/day
+        li Extreme = $1.25/day
+        li What some of us make in a year, they make in a LIFETIME!
+        li US: GNI PPP = $45,640
+        li GUA: GNI PPP = $4,570
+        li Liberia: = $930
 
   .slide
-    h1 Server monitoring
-    p A brief choice of options...
-    
-    p Roll-Your-Own
+    h2 Guatemala: What does this add up to?
     ul
-      li Scheduled Emails
-      li Scripts
-
-    p Integrated
-    ul 
-      li Splunk
-      li Nagios
-      li Cacti
-      li Zabbix
-      li Many others...
+      li High governmental corruption
+      li High non-homicidal violence
 
     .speaker
-      ul
-        li Simple Scripts / Emails
-        li Updates / Graphs
-        li Info in flat-files or DB
-        li Alerting
-
-  .slide
-    h1 Zabbix Architecture
-
-    p Zabbix environment consists of:
-    ul
-      li Zabbix Servers
-      li Database to store info (MySQL, PostgreSQL, Oracle, DB2)
-      li Frontend (php)
-      li Proxies (large/distributed environments)
-      li Agents
-      li External Scripts
-
-    .speaker
-      ul
-       li server
-       li DB agnostic
-       li PHP frontend
-       li proxies, why?
-       li agents, getting data
-       li scripts and zabbix_sender
-
-  .slide
-    h1 Zabbix Architecture
-    .center
-      img.framed(src="/img/zabbix_arch.png")
-
-    .speaker
-      ul
-        li Flow of items
-        li Triggers
-        li Actions
-  
-  .slide
-    h1 Zabbix Architecture
-    p A bit like LEGO
-    ul
-      li Zabbix has Templates
-      li Templates have hosts (Many <-> Many)
-      li Templates have Items so Hosts have Items
-      li Items have Triggers
-      li Triggers fire off Actions
-      li Actions turn humans or scripts into action.
-
-    .speaker
-      ul
-        li Template --> Object
-        li Hosts --> Instance
-        li Items --> Attributes
-        li Triggers --> Methods with tests
-        li Actions --> Message calls
-
-  .slide
-    h1 Zabbix Architecture
-    h3 Items
-    ul
-      li Identified by a 'Key'
-      li Numeric or text
-      li Have timer attributes
-      li Can be grouped in Applications
-    
-    .speaker
-      ul
-        li Application bug, only 1 app per host per template.
-
-  .slide
-    h1 Zabbix Architecture
-    h3 Triggers
-    ul
-      li Use logic to interpret item values
-      li Check against min, max, avg, last value.
-      li RegEx and string matching
-      li Date, times, intervals
-      li Can be complex but extremely powerful(like Zabbix)
-      li Outcome is always numerical
-
-    .speaker
-      p Show example on VPN'd live
-
-  .slide
-    h1 Zabbix Architecture
-    h3 Events
-    ul
-      li Trigger state changed 
-      li Logged for future reference and Audit
-      li Can be ACKed for further tracking
-
-  .slide
-    h1 Zabbix Architecture
-    h3 Actions
-    ul
-      li Work on basis of conditions
-      li Send out notifications
-      ul
-        li Can send on intervals if problem still exits
-        li Can send waiting for ACK
-      li Run scripts on hosts or feed info to other system
-    p This is the basis of alerting
-
-    .speaker
-      ul
-        li What conditions?
-        li Repeats?
-        li Acknowledge?
-        li Scripts?
-
-  .slide
-    h1 Getting Alerts
-    ul
-      li iPhone
-        ul
-          li Prowl for instant Push
-          li Mozaby
-          li ZBX Mobile
-      li Android
-        ul
-          li ZAX Zabbix Systems Monitoring
-          li Many many others
-      li Email
-      li SMS
-      li Jabber
-      li Airraid Sirens (external scripts)
-
-    .speaker
-      ul
-        li Email
-        li iPhone: Prowl
-        li Android: ZAX
-        li Airraid
-
-  .slide
-    h1 Types of Systems to Monitor
-
-    p Hardware
-    ul
-      li Servers
-      li Routers / Switches
-      li Environment Controls
-      ul
-        li Server Room Temperature
-        li Bathroom doors
-      li Other
       ul
         li 
-          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=649&period=432000") Issues resolved per Day
         li 
-          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=647&period=432000") Bugs
-        li
-          a(href="http://zabbix.org/zabbix/history.php?action=showgraph&itemid=623&perion=432000") Users in #zabbix
-
-    p Software
-    ul 
-      li Application Servers
-      li Database
-      li Monitoring Systems
-      li Custom metrics
-    
-    .speaker
-      ul
-        li servers
-        li bathroom
-        li commits
-        li bugs
-
-  .slide 
-    h1 Monitoring Hardware
-    ul
-      li 
-        a(href="http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol") SNMP
-        ul
-          li On all *nix systems
-          li Easy to config
-          li Not very extendable
-      li 
-        a(href="http://en.wikipedia.org/wiki/Zabbix") Zabbix Agent
-        ul
-          li Very Extendable
-          li Active / Passive checks
-          ul
-            li Linux
-            li Windows
-            li MacOS
-            li AIX, HP-UX, Solaris
-
-    p Well tested custom SNMP scripts on my 
-      a(href="htp://github.com/masteinhauser/zabbix") GitHub
-      |  for Zabbix 2.0 (In beta @ v1.9.7)
-
-    .speaker
-      ul
-        li SNMP ease
-        li ZA config and custom metrics
-        li SNMP scripts
-
-  .slide
-    h1 Monitoring Hardware
-    p Other methods
-    ul
-      li IPMI
-      li Simple Checks(ping, tcp connections, etc)
-      li Web (Actively look at and verify webpage content)
-      li External Scripts (We use for FTP server verification)
-      li Zabbix Trapper scripts (Apache, database, custom daemons)
-      li Telnet/SSH
-      li Many "plugins"
-
-  .slide
-    h1 Monitoring Software
-
-    p Application Servers
-    ul
-      li Java/Tomcat through JMX
-      li Apache/nginx through python
-      li Anything with zabbix_sender or frontend API calls
-
-    p Database with 
-      a(href="http://www.smartmarmot.com/product/dbforbix/") DBforBix
-    ul
-      li Oracle
-      li MySQL
-      li PostgreSQL
-      li DB2
-      li MS SQL Server
-    .speaker
-      ul
-        li app server monitor
-        li db server monitor
-
-  .slide
-    h1 Data Visualization
-    ul
-      li Graphs
-      li Maps
-      li Screens / Slides
-      li Reports
-
-    .speaker
-      ul
-        li graphs
-        li maps
-        li screens
-        li reports/SLAs
-
-  .slide
-    h1 Advanced Features
-    ul
-      li Web Monitoring
-      li Auto Discovery and Registration
-      li Maintenance Periods
-      li XML Import / Export
-      li JSON API
-      li 
-        a(href="http://www.zabbix.com/documentation/1.8/manual/processes/zabbix_sender") Zabbix Sender
-      li 
-        a(href="http://www.zabbix.com/wiki/doc/tech/proto/zabbixsenderprotocol") Zabbix Sender Protocol
-    p New in 2.0
-    ul
-      li Low Level Discovery
-      li Many other advanced features
-
-    .speaker
-      ul
-        li Explain low-level SNMP
-        li Explain Zabbix Sender
-        li Explain Java sender
-
-  .slide
-    h1 Demo Time
-    p Demo
-    ul 
-      li Let's take down a server!
-      |  Watch and listen for the notifications. 
-      li Explore the Zabbix interface
-
-    .speaker
-      ul
-        li VPN in and down wwt-web8
-
-  .slide
-    h1 More Info
-    ul
-      li
-          a(href="http://blog.zabbix.com/") Official Blog
-      li
-          a(href="http://www.zabbix.com/training_testimonials.php") Testimonials
-      li
-        a(href="http://amzn.com/dp/184719768X") Zabbix 1.8 Network Monitoring Book
-
 
   .slide
     h1 Questions + Discussion
@@ -382,7 +90,7 @@
     p Thanks for coming!
 
 img.logo(src='/img/adc.png')
-//#keyboard-enable
+#keyboard-enable
 
 #footer
   a(href="http://github.com/masteinhauser/zabbix-slides", target='_blank')
