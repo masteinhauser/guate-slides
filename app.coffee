@@ -1,3 +1,4 @@
+fs         = require('fs')
 express    = require("express")
 global.app = express.createServer()
 io         = require('socket.io').listen(app)
@@ -6,11 +7,15 @@ assets     = require('connect-assets')
 ip = '192.168.1.110'
 port = '3000'
 
-app.use assets()
+app.set 'views', __dirname + '/views'
+
+app.configure 'development', -> app.use assets()
+app.configure 'production',  -> ip = 'vps.kastlersteinhauser.com'; port = 8502; app.use assets( build: true, buildDir: false, src: __dirname + '/assets', detectChanges: false )
+
 app.use express.static(__dirname + '/assets')
 
-app.get '/', (req,res) -> res.render('slides.jade', { ip: ip, port: port })
-app.get '/remote', (req,res) -> res.render('clicker.jade')
+app.get '/', (req,res) -> res.render('slides.jade', {ip: ip, port: port})
+app.get '/remote', (req,res) -> res.render 'clicker.jade'
 
 slides_io = io.of("/slides")
 clicker_io = io.of("/remote")
@@ -32,3 +37,8 @@ slides_io.on "connection", (socket) ->
 
 app.listen(port)
 console.log("Listening on http://"+ip+":"+port+"/")
+
+pidFile = fs.createWriteStream('/tmp/guate-slides.pid')
+pidFile.once 'open', (fd) ->
+   pidFile.write(process.pid)
+

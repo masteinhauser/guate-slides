@@ -1,5 +1,5 @@
 .PHONY: deploy watch clean touch
-project=vbnet-gc
+project=guate-slides
 path=/usr/src/${project}
 instance=\033[36;01m${project}\033[m
 
@@ -16,7 +16,6 @@ deploy:
 	@ssh ${server} "cd ${path} && npm rebuild"
 	@echo -e " ${instance} | built npm packages on ${server}"
 	@echo -e " ${instance} | starting app on ${server}"
-#	@ssh ${server} "/usr/bin/screen -dmS vbnet-gc /bin/bash /usr/src/vbnet-gc/startup.sh"
 	@ssh -f -n ${server} "cd ${path}; /bin/bash startup.sh;"
 	@echo -e " ${instance} | started app on ${server}"
 	@make -s clean
@@ -25,9 +24,9 @@ deploy:
 
 touch: server = root@vps.kastlersteinhauser.com
 touch:
-	@wget -r -l 1 -q http://vps.kastlersteinhauser.com:8501/
+	@wget -r -l 1 -q http://vps.kastlersteinhauser.com:8502/
 	@echo -e " ${instance} | built main assets on ${server}"
-	@wget -r -l 1 -q http://vps.kastlersteinhauser.com:8501/clicker
+	@wget -r -l 1 -q http://vps.kastlersteinhauser.com:8502/remote
 	@echo -e " ${instance} | built clicker assets on ${server}"
 	@rm -rf vps.kastlersteinhauser.com*
 

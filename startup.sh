@@ -1,9 +1,9 @@
 #!/bin/bash
 
-log=/var/log/vbnet-gc.log
+log=/var/log/guate-slides.log
 export NODE_ENV=${1:-"production"}
 
-node app.js $1 2>&1 >> $log &
+coffee app.coffee $1 2>&1 >> $log &
 
 exit 0
 
