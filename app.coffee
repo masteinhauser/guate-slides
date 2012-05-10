@@ -17,6 +17,19 @@ app.use express.static(__dirname + '/assets')
 app.get '/', (req,res) -> res.render('slides.jade', {ip: ip, port: port})
 app.get '/remote', (req,res) -> res.render 'clicker.jade'
 
+io.enable('browser client minification')  # send minified client
+io.enable('browser client etag')          # apply etag caching logic based on version number
+io.enable('browser client gzip')          # gzip the file
+io.set('log level', 1)                    # reduce logging
+# enable all transports (optional if you want flashsocket)
+io.set('transports', [
+    'websocket'
+    , 'flashsocket'
+    , 'htmlfile'
+    , 'xhr-polling'
+    , 'jsonp-polling'
+])
+
 slides_io = io.of("/slides")
 clicker_io = io.of("/remote")
 

@@ -53,9 +53,9 @@ Clicker = Backbone.View.extend
 
       current = $(@slides.get(@slideId-1))
       next = $(@slides.get(@slideId))
-      $("#slide-title").text(current.find("h1").text())
+      $("#slide-title").text(current.find("h1").text() || current.find("h2").text())
       $("#speaker-note").html(current.find(".speaker").html())
-      $("#next-slide-title").html(next.find("h1").html() || "")
+      $("#next-slide-title").html(next.find("h1").html() || next.find("h2").html() || next.find("h3").html() || "")
 
 $ ->
    connection = io.connect()
